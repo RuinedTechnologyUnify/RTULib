@@ -27,7 +27,6 @@ public class MongoStorage implements Storage {
     public MongoStorage(MongoInfo info) {
         // Replace the placeholder with your Atlas connection string
         String uri = "mongodb://" + info.getUsername() + ":" + info.getPassword() + "@" + info.getIp() + ":" + info.getPort();
-        ;
         // Construct a ServerApi instance using the ServerApi.builder() method
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)

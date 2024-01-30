@@ -20,10 +20,9 @@ import java.util.List;
 public abstract class RTUCommand implements CommandExecutor, TabCompleter {
 
     private final RTUPlugin plugin = RTUPlugin.getPlugin();
+    private final String name;
     private CommandSender sender;
     private Audience audience;
-    private final String name;
-
 
     public boolean isOp() {
         return sender.isOp();
