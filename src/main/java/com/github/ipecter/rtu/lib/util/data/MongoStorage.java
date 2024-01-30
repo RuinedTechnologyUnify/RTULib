@@ -13,7 +13,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -57,10 +59,9 @@ public class MongoStorage implements Storage {
             return result.wasAcknowledged();
         } else {
             UpdateOptions options = new UpdateOptions().upsert(true);
-            Document setData = new Document(data.getKey(), data.getValue());
-            Document update = new Document("$set", setData);
-            mongoCollection.updateOne(filter, update, options);
-            return true;
+            Bson update = Updates.set(data.getKey(), data.getValue());
+            UpdateResult result = mongoCollection.updateOne(filter, update, options);
+            return result.wasAcknowledged();
         }
     }
 
