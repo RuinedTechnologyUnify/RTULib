@@ -1,0 +1,172 @@
+# ## Treasury
+# Treasury is a modern code library for plugins.
+# GitHub Repository: <https://github.com/ArcanePlugins/Treasury/>
+#  
+# ## About this File
+# Welcome to the messages.yml file, here you may translate
+# and customise all of Treasury's messages (except for those
+# logged to the console). Standard color codes are supported
+# (e.g &a, &b, &c) and also hex color codes (e.g.
+# &#FF0000, &#ABCDEF). All messages are configured in terms
+# of lines, so you can add multiple lines to most messages
+# if you wish.
+#  
+# ## Applying changes
+# Whenever you have finished making your changes to this
+# configuration file, please save it, then run
+# `/treasury reload` if your server is already running.
+
+# These messages are used across multiple other messages,
+# so they have been grouped together in the "common" category.
+common:
+  # This text replaces the `%prefix%` placeholder in all applicable messages.
+  prefix: "&b&lTreasury:&7"
+  # This message is sent when a user does not have permission to access something within Treasury,
+  # i.e., a command like `/treasury migrate`.
+  #  
+  # Placeholders: %prefix%, %permission%
+  no-permission:
+      - "%prefix% You don't have access to that &8(&7requires permission &b%permission%&8)&7."
+  # The delimiter used in lists of things - this separates each list term.
+  # For example, the non-colored version of a list can look like:
+  # "List item 1&7, &bList item 2&7, &bList item 3"
+  # Notice how the list delimiter is used to separate each term in the list.
+  list-delimiter: "&7, &b"
+
+# These messages are sent by running certain commands.
+commands:
+  # Messages from `/treasury`
+  treasury:
+    # Placeholders: %prefix%, %label%
+    invalid-usage-unspecified:
+        - "%prefix% Invalid usage - please specify a subcommand."
+        - "%prefix% For a list of available subcommands, try '&b/%label% help&7'."
+    # Placeholders: %prefix%, %label%, %subcomand%
+    invalid-usage-specified:
+        - "%prefix% Invalid subcommand '&b%subcommand%&7'."
+        - "%prefix% For a list of available subcommands, try '&b/%label% help&7'."
+    subcommands:
+      downloadLatest:
+        # Placeholders: %prefix%, %label%
+        invalid-usage: "%prefix% Invalid usage, try '&b/%label% downloadLatest&7'."
+        # Placeholders: %prefix%
+        started: "%prefix% &7Download process started."
+        # Placeholders: %prefix%
+        error-occurred: "%prefix% &7Unable to retrieve information/download jar. See console for more details."
+        # Placeholders: %prefix%
+        couldnt-parse: "%prefix% &7Something went wrong whilst parsing latest build download data. Please notify a Treasury developer ASAP!"
+        # Placeholders: %prefix%
+        already-latest: "%prefix% &7You are already running the latest version of Treasury!"
+        # Placeholders: %prefix%, %time%
+        success: "%prefix% &7Successfully downloaded the latest Treasury jar (took &b%time%ms&7). Please restart your server in order for it to take effect."
+      economy:
+        # Placeholders: %prefix%, %label%
+        invalid-usage-unspecified:
+            - "%prefix% Invalid usage - please specify a subcommand."
+            - "%prefix% For a list of available subcommands, try '&b/%label% economy help&7'."
+        # Placeholders: %prefix%, %label%, %subcomand%
+        invalid-usage-specified:
+            - "%prefix% Invalid subcommand '&b%subcommand%&7'."
+            - "%prefix% For a list of available subcommands, try '&b/%label% economy help&7'."
+        info:
+          # Placeholders: %prefix%, %label%
+          invalid-usage:
+              - "%prefix% Invalid usage, try '&b/%label% economy help&7'."
+          # Placeholders: %prefix%
+          economy-provider-unavailable:
+              - "&f&nEconomy Provider"
+              - "&8 &m->&7 You don't have an Economy Provider installed."
+              - " "
+          # Placeholders: %prefix, %name%, %priority%, %primary-currency%
+          economy-provider-available:
+              - "&f&nEconomy Provider"
+              - "&8 &m->&7 Name: &b%name%"
+              - "&8 &m->&7 Priority: &b%priority%"
+              - "&8 &m->&7 Primary currency: &b%primary-currency%"
+              - " "
+        help:
+          # Placeholders: %prefix%, %label%
+          invalid-usage:
+              - "%prefix% Invalid usage, try '&b/%label% economy help&7'."
+          # Placeholders: %prefix%
+          available-commands:
+              - "%prefix% Available commands:"
+              - " &8&m->&b /treasury economy help &8- &7view a list of Treasury's commands."
+              - " &8&m->&b /treasury economy info &8- &7view info about Treasury."
+              - " &8&m->&b /treasury economy migrate &8- &7migrate from one economy provider to another."
+      help:
+        # Placeholders: %prefix%, %label%
+        invalid-usage:
+            - "%prefix% Invalid usage, try '&b/%label% help&7'."
+        # Placeholders: %prefix%
+        available-commands:
+            - "%prefix% Available commands:"
+            - " &8&m->&b /treasury help &8- &7view a list of Treasury's commands."
+            - " &8&m->&b /treasury info &8- &7view info about Treasury."
+            - " &8&m->&b /treasury reload &8- &7re-load all of Treasury's configuration files."
+            - " &8&m->&b /treasury downloadLatest &8- &7downloads the latest Treasury plugin jar."
+            - " &8&m->&b /treasury economy &8 - &7economy specific commands"
+      info:
+        # Placeholders: %prefix%, %label%
+        invalid-usage:
+            - "%prefix% Invalid usage, try '&b/%label% info&7'."
+        # Placeholders: %prefix%, %version%, %description%,
+        #               %credits%, %repository%, %platform%
+        treasury:
+            - "&f&nAbout Treasury"
+            - "&8 &m->&7 Running &bTreasury v%version% on %platform%"
+            - "&8 &m->&7 Description: &b%description%"
+            - "&8 &m->&7 Made possible by: &bSee &n%credits%"
+            - "&8 &m->&7 Learn more at: &b&n%repository%"
+            - " "
+        # Placeholders: %prefix%
+        misc-info:
+            - "&f&nMiscellaneous Info:"
+            - "&8 &m->&7 For a list of commands, run '&b/treasury help&7'."
+      migrate:
+        # Placeholders: %prefix%, %label%, %providers%
+        invalid-usage:
+            - "%prefix% Invalid usage, try '&b/%label% migrate <providerFrom> <providerTo>&7'."
+            - "%prefix% Valid economy providers: &b%providers%&7."
+        # Placeholders: %prefix%
+        requires-two-providers:
+            - "%prefix% You can't use this subcommand unless you have 2 economy providers set up."
+        # Placeholders: %prefix%, %providers%
+        providers-match:
+            - "%prefix% You must specify two different economy providers."
+            - "%prefix% Valid economy providers: &b%providers%&7."
+        # Placeholders: %prefix%, %providers%
+        requires-valid-from:
+            - "%prefix% You must specify a valid economy provider to migrate from."
+            - "%prefix% Valid economy providers: &b%providers%&7."
+        # Placeholders: %prefix%, %providers%
+        requires-valid-to:
+            - "%prefix% You must specify a valid economy provider to migrate to."
+            - "%prefix% Valid economy providers: &b%providers%&7."
+        # Placeholders: %prefix%
+        starting-migration:
+            - "%prefix% Starting migration, please wait..."
+            - "%prefix% (This may briefly freeze the server)"
+        # Placeholders: %prefix%
+        internal-error:
+            - "%prefix% An internal error occurred whilst attempting to migrate. Please check console for more information."
+        # Placeholders: %prefix%, %time%, %player-accounts%,
+        #               %non-migrated-currencies%, %migrated-currencies%
+        finished-migration:
+            - "%prefix% Migration complete! Statistics:"
+            - "&8 &m->&7 Took &b%time%ms&7."
+            - "&8 &m->&7 Processed &b%player-accounts%&7 player accounts."
+            - "&8 &m->&7 Processed &b%nonplayer-accounts%&7 non player accounts."
+            - "&8 &m->&7 Migrated currencies: &b%migrated-currencies%"
+            - "&8 &m->&7 Non-migrated currencies: &b%non-migrated-currencies%&7."
+      reload:
+        # Placeholders: %prefix%, %label%
+        invalid-usage:
+            - "%prefix% Invalid usage, try '&b/%label% reload&7'."
+        # Placeholders: %prefix%
+        reload-start:
+            - "%prefix% Reloading Treasury..."
+        # Placeholders: %prefix%, %time%
+        reload-complete:
+            - "%prefix% Reload successful &8(&7took &b%time%ms&8)&7."
+
