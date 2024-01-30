@@ -29,7 +29,8 @@ public class ItemUtil {
                 } else return null;
             }
             default -> {
-                Material material = Material.getMaterial(split[1].toUpperCase());
+                String id = split.length > 1 ? split[1] : split[0];
+                Material material = Material.getMaterial(id.toUpperCase());
                 return material != null ? new ItemStack(material) : null;
             }
         }
