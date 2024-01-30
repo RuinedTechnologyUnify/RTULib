@@ -43,33 +43,33 @@ public class MongoStorage implements Storage {
     }
 
     @Override
-    public boolean add(String collection, JsonObject data) {
-        MongoCollection<Document> mongoCollection = database.getCollection(collection);
-        Document setData = Document.parse(gson.toJson(data));
-        mongoCollection.insertOne(setData);
+    public boolean add(String collectionName, JsonObject data) {
+        MongoCollection<Document> collection = database.getCollection(collectionName);
+        Document document = Document.parse(gson.toJson(data));
+        collection.insertOne(document);
         return true;
     }
 
     @Override
-    public boolean set(String collection, Pair<String, Object> find, Pair<String, Object> data) {
-        MongoCollection<Document> mongoCollection = database.getCollection(collection);
+    public boolean set(String collectionName, Pair<String, Object> find, Pair<String, Object> data) {
+        MongoCollection<Document> collection = database.getCollection(collectionName);
         Bson filter = Filters.eq(find.getKey(), find.getValue());
         if (data == null) {
-            DeleteResult result = mongoCollection.deleteOne(filter);
+            DeleteResult result = collection.deleteOne(filter);
             return result.wasAcknowledged();
         } else {
             UpdateOptions options = new UpdateOptions().upsert(true);
             Bson update = Updates.set(data.getKey(), data.getValue());
-            UpdateResult result = mongoCollection.updateOne(filter, update, options);
+            UpdateResult result = collection.updateOne(filter, update, options);
             return result.wasAcknowledged();
         }
     }
 
 
     @Override
-    public JsonObject get(String collection, Pair<String, Object> find) {
+    public JsonObject get(String collectionName, Pair<String, Object> find) {
         Bson filter = Filters.eq(find.getKey(), find.getValue());
-        Document result = database.getCollection(collection).find(filter).first();
+        Document result = database.getCollection(collectionName).find(filter).first();
         return result != null ? JsonParser.parseString(result.toJson()).getAsJsonObject() : null;
     }
 
