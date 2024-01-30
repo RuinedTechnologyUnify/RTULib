@@ -4,7 +4,6 @@ import com.github.ipecter.rtu.lib.RTULib;
 import com.github.ipecter.rtu.lib.plugin.RTUListener;
 import com.github.ipecter.rtu.lib.plugin.RTUPlugin;
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
