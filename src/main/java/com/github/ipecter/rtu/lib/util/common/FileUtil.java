@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
 
 public class FileUtil {
 
@@ -23,8 +24,7 @@ public class FileUtil {
                 out.close();
                 in.close();
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error copying content " + sourceFile);
-                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error copying content " + sourceFile, e);
             }
         }
         return resultFile;
@@ -42,8 +42,7 @@ public class FileUtil {
                 out.close();
                 in.close();
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error copying file " + sourceFolder + "/" + sourceFile);
-                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error copying file " + sourceFolder + "/" + sourceFile, e);
             }
         }
         return resultFile;
@@ -65,8 +64,7 @@ public class FileUtil {
                 resourceFolder.mkdirs();
 
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error creating folder " + folder);
-                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error creating folder " + folder, e);
             }
         }
         File resourceFile = new File(folder, file);
@@ -75,8 +73,9 @@ public class FileUtil {
                 resourceFile.createNewFile();
 
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error creating file " + file);
-                e.printStackTrace();
+//                Bukkit.getLogger().severe("Error creating file " + file);
+//                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error creating file " + file, e);
             }
         }
         return resourceFile;
@@ -89,8 +88,7 @@ public class FileUtil {
                 resourceFolder.mkdirs();
 
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error creating folder " + folder);
-                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error creating folder " + folder, e);
             }
         }
         return resourceFolder;
@@ -102,8 +100,7 @@ public class FileUtil {
                 folder.mkdirs();
 
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error creating folder " + folder);
-                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error creating folder " + folder, e);
             }
         }
         return folder;
@@ -115,8 +112,7 @@ public class FileUtil {
                 folder.mkdirs();
 
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error creating folder " + folder);
-                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error creating folder " + folder, e);
             }
         }
         File resourceFile = new File(folder, file);
@@ -125,8 +121,7 @@ public class FileUtil {
                 resourceFile.createNewFile();
 
             } catch (Exception e) {
-                Bukkit.getLogger().severe("Error creating file " + file);
-                e.printStackTrace();
+                Bukkit.getLogger().log(Level.WARNING, "Error creating file " + file, e);
             }
         }
         return resourceFile;
