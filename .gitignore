@@ -1,5 +1,3 @@
-!builds/*.jar
-
 ### Intellij ###
 .idea/
 
@@ -33,6 +31,7 @@ replay_pid*
 .gradle
 **/build/
 !src/**/build/
+!builds/*.jar
 
 # Ignore Gradle GUI config
 gradle-app.setting
