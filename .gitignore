@@ -1,3 +1,5 @@
+!builds/*.jar
+
 ### Intellij ###
 .idea/
 
