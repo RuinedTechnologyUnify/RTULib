@@ -6,14 +6,45 @@ plugins {
 }
 
 group = 'com.github.ipecter.rtu'
-version = '0.6.0'
+version = '0.12.0'
 
 ConfigurableFileTree libsImplementation = fileTree(dir: 'libs-implementation', include: ['*.jar'])
 
 runServer {
     minecraftVersion("1.20.1")
 }
+subprojects {
 
+    apply {
+        plugin("java")
+    }
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        maven {
+            name = "minecraft-libraries"
+            url = "https://libraries.minecraft.net/"
+        }
+        maven {
+            name = "spigotmc-repo"
+            url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+        }
+        maven {
+            name = "nms-repo"
+            url = "https://repo.codemc.io/repository/nms-local/"
+        }
+    }
+
+    dependencies {
+        compileOnly "org.spigotmc:spigot-api:1.20.2-R0.1-SNAPSHOT"
+    }
+}
 repositories {
     mavenCentral()
     maven {
@@ -36,7 +67,6 @@ repositories {
     maven {
         url = 'https://jitpack.io'
     }
-
 }
 
 dependencies {
@@ -52,11 +82,21 @@ dependencies {
     compileOnly 'org.quartz-scheduler:quartz:2.3.2'
 
     compileOnly 'me.clip:placeholderapi:2.11.2'
-    compileOnly 'io.th0rgal:oraxen:1.166.0'
+    compileOnly 'io.th0rgal:oraxen:1.168.0'
     compileOnly 'com.github.LoneDev6:API-ItemsAdder:3.6.1'
     compileOnly 'org.projectlombok:lombok:1.18.28'
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
 
+    implementation project(path: ':NMS')
+    implementation project(path: ':NMS_1_17_R1', configuration: 'reobf')
+    implementation project(path: ':NMS_1_18_R1', configuration: 'reobf')
+    implementation project(path: ':NMS_1_18_R2', configuration: 'reobf')
+    implementation project(path: ':NMS_1_19_R1', configuration: 'reobf')
+    implementation project(path: ':NMS_1_19_R2', configuration: 'reobf')
+    implementation project(path: ':NMS_1_19_R3', configuration: 'reobf')
+    implementation project(path: ':NMS_1_20_R1', configuration: 'reobf')
+    implementation project(path: ':NMS_1_20_R2', configuration: 'reobf')
+    implementation project(path: ':NMS_1_20_R3', configuration: 'reobf')
     implementation libsImplementation
 }
 
@@ -71,7 +111,7 @@ shadowJar {
     }
 }
 
-def targetJavaVersion = 16
+def targetJavaVersion = 17
 
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)

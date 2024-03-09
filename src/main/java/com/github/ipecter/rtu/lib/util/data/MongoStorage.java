@@ -1,8 +1,6 @@
 package com.github.ipecter.rtu.lib.util.data;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.ServerApi;
@@ -53,13 +51,19 @@ public class MongoStorage implements Storage {
     @Override
     public boolean set(String collectionName, Pair<String, Object> find, Pair<String, Object> data) {
         MongoCollection<Document> collection = database.getCollection(collectionName);
-        Bson filter = Filters.eq(find.getKey(), find.getValue());
+        Bson filter;
+        if (find.getValue() instanceof JsonObject jsonElement) {
+            filter = Filters.eq(find.getKey(), Document.parse(jsonElement.toString()));
+        } else filter = Filters.eq(find.getKey(), (String) find.getValue());
         if (data == null) {
             DeleteResult result = collection.deleteOne(filter);
             return result.wasAcknowledged();
         } else {
             UpdateOptions options = new UpdateOptions().upsert(true);
-            Bson update = Updates.set(data.getKey(), data.getValue());
+            Bson update;
+            if (data.getValue() instanceof JsonObject jsonObject) {
+                update = Updates.set(data.getKey(), Document.parse(jsonObject.toString()));
+            } else update = Updates.set(data.getKey(), data.getValue());
             UpdateResult result = collection.updateOne(filter, update, options);
             return result.wasAcknowledged();
         }

@@ -66,7 +66,7 @@ public class VersionUtil {
         return VERSION;
     }
 
-    public String getNMSVersion(String versionStr) {
+    public static String getNMSVersion(String versionStr) {
         Version version = new Version(versionStr);
         return switch (version.getVersion()) {
             case 1171 -> "v1_17_R1";
