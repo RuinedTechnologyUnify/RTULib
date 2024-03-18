@@ -99,9 +99,10 @@ public class JsonFile {
             JsonObject object = element.getAsJsonObject();
             JsonElement result = object.get(find.getKey());
             if (result == null || result.isJsonNull()) continue;
+            if (!result.equals(find.getValue())) continue;
             return new Result(i, element.getAsJsonObject());
         }
-        return null;
+        return null
     }
 
     private void save() {

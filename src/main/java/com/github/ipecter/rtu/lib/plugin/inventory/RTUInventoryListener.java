@@ -18,7 +18,7 @@ public class RTUInventoryListener implements Listener {
             boolean isPlayerInventory = inv != null && !(inv.getHolder() instanceof RTUInventory);
             RTUInventory.Event event = new RTUInventory.Event(inv, player, isPlayerInventory);
             RTUInventory.Click click = new RTUInventory.Click(e.getSlot(), e.getSlotType(), e.getClick());
-            rsInventory.onClick(event, click);
+            e.setCancelled(!rsInventory.onClick(event, click));
         }
     }
 

@@ -14,7 +14,8 @@ import org.bukkit.inventory.InventoryHolder;
 
 public abstract class RTUInventory implements InventoryHolder, Listener {
 
-    public void onClick(Event event, Click click) {
+    public boolean onClick(Event event, Click click) {
+        return true;
     }
 
     public void onClose(Event event) {
